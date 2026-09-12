@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TrainerDesk v5</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--text:#17191d;--muted:#747982;--line:#e5e7eb;--dark:#111315;--ok:#188b5b;--bad:#c94040}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}.side{position:fixed;inset:0 auto 0 0;width:235px;background:var(--dark);color:#fff;padding:22px 14px}.logo{font-size:21px;font-weight:800;padding:0 12px 25px}.logo span{color:#969ba4;font-weight:500}.nav button{display:block;width:100%;border:0;background:none;color:#b9bdc5;text-align:left;padding:12px;border-radius:9px;cursor:pointer;margin:2px 0}.nav button:hover,.nav button.active{background:#25282d;color:#fff}.main{margin-left:235px;padding:28px 34px;max-width:1500px}.page{display:none}.page.active{display:block}.top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:22px}.top h1{margin:0 0 5px;font-size:28px}.date,.muted{color:var(--muted);font-size:13px}.btn{border:0;border-radius:9px;padding:10px 15px;background:var(--dark);color:#fff;cursor:pointer;font-weight:650}.btn.light{background:#eef0f3;color:#17191d}.btn.danger{background:#fff0f0;color:var(--bad)}.btn.small{padding:7px 10px;font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.metric{font-size:29px;font-weight:780;margin:8px 0}.pill{display:inline-block;padding:5px 9px;border-radius:30px;background:#edf8f2;color:var(--ok);font-size:12px}.pill.bad{background:#fff0f0;color:var(--bad)}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:18px}.list{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:15px 17px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.person{display:flex;align-items:center;gap:11px}.avatar{width:40px;height:40px;border-radius:50%;background:#e8eaed;display:grid;place-items:center;font-weight:750}.search{padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;width:260px}.client-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.client{cursor:pointer}.client:hover{box-shadow:0 8px 25px #0000000c}.hr{height:1px;background:var(--line);margin:14px 0}.modal{position:fixed;inset:0;background:#0008;z-index:20;display:none;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.modalbox{background:#fff;border-radius:16px;width:min(850px,100%);max-height:92vh;overflow:auto;padding:22px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modalhead h2{margin:0}.close{border:0;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formgrid label{font-size:12px;color:var(--muted)}.formgrid input,.formgrid select,.formgrid textarea{display:block;width:100%;margin-top:5px;padding:10px;border:1px solid #dfe2e7;border-radius:8px;background:#fff}.full{grid-column:1/-1}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.tabs{display:flex;gap:3px;border-bottom:1px solid var(--line);margin-bottom:16px}.tabs button{border:0;background:none;padding:10px 12px;color:var(--muted);cursor:pointer}.tabs button.on{color:var(--text);font-weight:750;border-bottom:2px solid var(--text)}.tab{display:none}.tab.on{display:block}.profile{display:flex;align-items:center;gap:14px}.profile .avatar{width:60px;height:60px;font-size:21px}.exercise{display:grid;grid-template-columns:1.5fr .7fr .7fr .4fr;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.exercise input{width:100%;padding:7px;border:1px solid #ddd;border-radius:7px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted)}.toast{position:fixed;right:20px;bottom:20px;background:#111315;color:#fff;padding:12px 16px;border-radius:9px;display:none;z-index:30}.empty{text-align:center;padding:35px;color:#888}.calendar-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}.calendar-nav,.calendar-views{display:flex;gap:6px;align-items:center}.calendar-title{font-size:18px;font-weight:780;min-width:210px;text-align:center}.calendar-views .btn.active{background:#111315;color:#fff}.calendar{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.calendar-head,.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr)}.calendar-head div{padding:10px 8px;color:var(--muted);font-size:12px;font-weight:700;border-bottom:1px solid var(--line);text-align:center}.calendar-grid{gap:0}.day{min-height:130px;background:#fff;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px;cursor:pointer;overflow:hidden}.day:nth-child(7n){border-right:0}.day.muted-day{background:#fafafa;color:#a0a4aa}.day.today{box-shadow:inset 0 0 0 2px #111315}.day-head{display:flex;justify-content:space-between;align-items:center;font-size:12px}.day-num{font-weight:780}.day-add{opacity:0;border:0;background:#eef0f3;border-radius:6px;width:24px;height:24px;cursor:pointer}.day:hover .day-add{opacity:1}.event{background:#f0f2f5;border-radius:8px;padding:7px;margin-top:7px;font-size:11px;cursor:pointer}.event b{font-size:11px}.event .event-program{color:#656a72;margin-top:2px}
+.session-box{max-width:850px}.session-exercises{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.session-row{display:grid;grid-template-columns:1.7fr .8fr .8fr .65fr;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}
+.session-row:last-child{border-bottom:0}.session-head{background:#f7f8fa;font-size:12px;color:var(--muted);font-weight:700}
+.session-row input{width:100%;padding:8px;border:1px solid #dfe2e7;border-radius:7px}
+.event.done{opacity:.55;text-decoration:line-through}.event .start-label{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;color:#555}
+@media(max-width:600px){.session-row{grid-template-columns:1.3fr .7fr .7fr .55fr;font-size:11px}.session-row input{padding:7px}.session-box{padding:12px}}
+
+.calendar.week-view .day{min-height:360px}.calendar.twoweek-view .day{min-height:210px}.calendar.month-view .day{min-height:120px}@media(max-width:900px){.calendar.week-view .day{min-height:280px}.calendar.twoweek-view .day{min-height:180px}}.chart{height:180px;display:flex;align-items:flex-end;gap:12px;padding:15px}.chart span{flex:1;background:#d9dce1;border-radius:5px 5px 0 0;min-height:10px;position:relative}.chart small{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;color:#777}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sectionhead h2,.sectionhead h3{margin:0}
+@media(max-width:900px){.side{width:70px}.logo{font-size:0}.logo:after{content:"TD";font-size:20px}.nav button{font-size:0;text-align:center}.nav button:before{content:"•";font-size:22px}.main{margin-left:70px;padding:18px}.grid,.grid3,.client-grid,.layout{grid-template-columns:1fr 1fr}.week{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid,.grid3,.client-grid,.layout,.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.top{align-items:flex-start;flex-direction:column}.main{padding:14px}.modalbox{padding:16px}.search{width:100%}}
+</style>
+</head>
+<body>
+<aside class="side"><div class="logo">TrainerDesk <span>FREE</span></div><nav class="nav">
+<button class="active" data-page="dashboard">▦ &nbsp; Главная</button>
+<button data-page="clients">♙ &nbsp; Клиенты</button>
+<button data-page="workouts">⚡ &nbsp; Тренировки</button>
+<button data-page="schedule">□ &nbsp; Расписание</button>
+<button data-page="nutrition">◌ &nbsp; Питание</button>
+<button data-page="progress">↗ &nbsp; Прогресс</button>
+</nav></aside>
+<main class="main">
+<section id="dashboard" class="page active"><div class="top"><div><h1>Доброе утро, Павел</h1><div class="date">TrainerDesk · локальная версия</div></div><button class="btn" data-action="new-client">+ Новый клиент</button></div>
+<div class="grid"><div class="card"><div class="muted">Клиенты</div><div class="metric" id="mClients">0</div><span class="pill">активные</span></div><div class="card"><div class="muted">Тренировки сегодня</div><div class="metric" id="mToday">0</div><div class="muted">по расписанию</div></div><div class="card"><div class="muted">Осталось тренировок</div><div class="metric" id="mSessions">0</div><div class="muted">по абонементам</div></div><div class="card"><div class="muted">Планов питания</div><div class="metric" id="mFood">0</div><div class="muted">сохранено</div></div></div>
+<div class="layout"><div><div class="sectionhead"><h2>Сегодня</h2></div><div class="list" id="todayList"></div></div><div><div class="sectionhead"><h2>Быстрые действия</h2></div><div class="list">
+<div class="row"><span>Добавить клиента</span><button class="btn small" data-action="new-client">Создать</button></div>
+<div class="row"><span>Создать программу</span><button class="btn small" data-action="new-workout">Открыть</button></div>
+<div class="row"><span>Записать измерение</span><button class="btn small" data-action="new-measurement">Открыть</button></div>
+</div></div></div></section>
+
+<section id="clients" class="page"><div class="top"><div><h1>Клиенты</h1><div class="date" id="clientCount"></div></div><div style="display:flex;gap:8px"><input id="clientSearch" class="search" placeholder="Поиск клиента…"><button class="btn" data-action="new-client">+ Клиент</button></div></div><div class="client-grid" id="clientList"></div></section>
+
+<section id="workouts" class="page"><div class="top"><div><h1>Тренировки</h1><div class="date">Конструктор программ</div></div><button class="btn" data-action="new-workout">+ Новая программа</button></div><div class="layout"><div class="card"><div class="sectionhead"><h2>Программы</h2></div><div id="programList"></div></div><div class="card"><h2>Журнал</h2><p class="muted">После тренировки фиксируй фактический вес и повторы. История хранится в браузере.</p><div class="exercise"><b>Жим лёжа</b><span>100 кг</span><span>6</span><span>✓</span></div><div class="exercise"><b>Тяга блока</b><span>70 кг</span><span>10</span><span>✓</span></div></div></div></section>
+
+<section id="schedule" class="page"><div class="top"><div><h1>Расписание</h1><div class="date">Планирование тренировок по дням</div></div><button class="btn" data-action="new-schedule">+ Тренировка</button></div><div class="card" style="padding:14px"><div class="calendar-toolbar"><div class="calendar-nav"><button class="btn light small" data-cal="prev">‹</button><button class="btn light small" data-cal="today">Сегодня</button><button class="btn light small" data-cal="next">›</button></div><div class="calendar-title" id="calendarTitle"></div><div class="calendar-views"><button class="btn light small" data-view="week">Неделя</button><button class="btn light small" data-view="2week">2 недели</button><button class="btn small active" data-view="month">Месяц</button></div></div><div class="calendar month-view" id="calendar"><div class="calendar-head"><div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div></div><div class="calendar-grid" id="week"></div></div></div></section>
+
+<section id="nutrition" class="page"><div class="top"><div><h1>Питание</h1><div class="date">Калории и КБЖУ</div></div><button class="btn" data-action="new-nutrition">+ План питания</button></div><div class="grid3"><div class="card"><div class="muted">Средняя цель</div><div class="metric">2 410</div><div class="muted">ккал / день</div></div><div class="card"><div class="muted">Средний белок</div><div class="metric">157 г</div></div><div class="card"><div class="muted">Планов</div><div class="metric" id="foodCount">0</div></div></div><div class="card" style="margin-top:16px"><div class="sectionhead"><h2>Планы</h2></div><div id="nutritionList"></div></div></section>
+
+<section id="progress" class="page"><div class="top"><div><h1>Прогресс</h1><div class="date">Измерения клиентов</div></div><button class="btn" data-action="new-measurement">+ Измерение</button></div><div class="grid3"><div class="card"><div class="muted">Измерений</div><div class="metric" id="measurementCount">0</div></div><div class="card"><div class="muted">Последний вес</div><div class="metric" id="lastWeight">—</div></div><div class="card"><div class="muted">Поля замера</div><div class="metric">4</div><div class="muted">вес · талия · грудь · бедро</div></div></div><div class="layout"><div class="card"><h2>Динамика веса</h2><div class="chart" id="chart"></div></div><div class="card"><h2>История измерений</h2><div id="measurementList"></div></div></div></section>
+</main>
+
+<div id="clientModal" class="modal"><div class="modalbox"><div class="modalhead"><h2 id="clientModalTitle">Новый клиент</h2><button class="close" data-close="clientModal">×</button></div><form id="clientForm"><div class="formgrid">
+<label>Имя<input id="fName" required></label><label>Возраст<input id="fAge" type="number"></label><label>Рост, см<input id="fHeight" type="number"></label><label>Вес, кг<input id="fWeight" type="number" step=".1"></label>
+<label>Цель<select id="fGoal"><option>Набор массы</option><option>Похудение</option><option>Рекомпозиция</option><option>Функциональная подготовка</option><option>Подготовка к ГТО</option></select></label><label>Тренировок в абонементе<input id="fPack" type="number" value="12"></label>
+<label class="full">Ограничения по здоровью<textarea id="fLimits" rows="2"></textarea></label><label class="full">Заметки тренера<textarea id="fNotes" rows="3"></textarea></label></div><div class="actions"><button type="button" class="btn light" data-close="clientModal">Отмена</button><button class="btn">Сохранить</button></div></form></div></div>
+
+<div id="profileModal" class="modal"><div class="modalbox"><div class="modalhead"><div id="profileHeader"></div><button class="close" data-close="profileModal">×</button></div><div class="tabs"><button class="on" data-tab="overview">Обзор</button><button data-tab="program">Программа</button><button data-tab="food">Питание</button><button data-tab="measure">Прогресс</button></div><div id="overview" class="tab on"></div><div id="program" class="tab"></div><div id="food" class="tab"></div><div id="measure" class="tab"></div></div></div>
+
+<div id="workoutModal" class="modal"><div class="modalbox"><div class="modalhead"><h2>Новая программа</h2><button class="close" data-close="workoutModal">×</button></div><form id="workoutForm"><div class="formgrid"><label>Название<input id="wName" required placeholder="Спина + плечи"></label><label>Клиент<select id="wClient"></select></label></div><div class="hr"></div><div class="sectionhead"><h3>Упражнения</h3><button type="button" class="btn small" id="addExercise">+ Упражнение</button></div><div id="exerciseEditor"></div><div class="actions"><button type="button" class="btn light" data-close="workoutModal">Отмена</button><button class="btn">Сохранить</button></div></form></div></div>
+
+<div id="scheduleModal" class="modal"><div class="modalbox"><div class="modalhead"><h2>Новая тренировка</h2><button class="close" data-close="scheduleModal">×</button></div><form id="scheduleForm"><div class="formgrid"><label>Клиент<select id="sClient"></select></label><label>Программа<select id="sProgram"><option value="">Без программы</option></select></label><label>Дата<input id="sDate" type="date" required></label><label>Время<input id="sTime" type="time" required></label><label class="full">Тренировка<input id="sType" value="Персональная тренировка"></label></div><div class="actions"><button type="button" class="btn light" data-close="scheduleModal">Отмена</button><button class="btn">Добавить</button></div></form></div></div>
+
+
+<div id="sessionModal" class="modal"><div class="modalbox session-box">
+<div class="modalhead"><div><h2 id="sessionTitle">Тренировка</h2><div class="muted" id="sessionMeta"></div></div><button class="close" data-close="sessionModal">×</button></div>
+<form id="sessionForm">
+<div class="session-exercises" id="sessionExercises"></div>
+<label class="full" style="display:block;margin-top:14px">Комментарий тренера<textarea id="sessionNote" rows="3" placeholder="Самочувствие, техника, что изменить в следующий раз…"></textarea></label>
+<div class="actions"><button type="button" class="btn light" data-close="sessionModal">Отмена</button><button class="btn">Завершить тренировку</button></div>
+</form></div></div>
+
+<div id="nutritionModal" class="modal"><div class="modalbox"><div class="modalhead"><h2>План питания</h2><button class="close" data-close="nutritionModal">×</button></div><form id="nutritionForm"><div class="formgrid"><label>Клиент<select id="nClient"></select></label><label>Калории<input id="nKcal" type="number" value="2400"></label><label>Белок, г<input id="nP" type="number" value="160"></label><label>Жиры, г<input id="nF" type="number" value="75"></label><label>Углеводы, г<input id="nC" type="number" value="280"></label><label class="full">Комментарий<textarea id="nNote" rows="3"></textarea></label></div><div class="actions"><button type="button" class="btn light" data-close="nutritionModal">Отмена</button><button class="btn">Сохранить</button></div></form></div></div>
+
+<div id="measurementModal" class="modal"><div class="modalbox"><div class="modalhead"><h2>Новое измерение</h2><button class="close" data-close="measurementModal">×</button></div><form id="measurementForm"><div class="formgrid"><label>Клиент<select id="mClient"></select></label><label>Дата<input id="mDate" type="date" required></label><label>Вес, кг<input id="mWeight" type="number" step=".1"></label><label>Талия, см<input id="mWaist" type="number" step=".1"></label><label>Грудь, см<input id="mChest" type="number" step=".1"></label><label>Бедро, см<input id="mThigh" type="number" step=".1"></label></div><div class="actions"><button type="button" class="btn light" data-close="measurementModal">Отмена</button><button class="btn">Добавить</button></div></form></div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+'use strict';
+const seedClients=[
+{name:'Алексей',age:28,height:184,weight:82,goal:'Набор массы',pack:12,sessions:12,limits:'Без ограничений',notes:'Следить за техникой жима.'},
+{name:'Мария',age:31,height:168,weight:64,goal:'Рекомпозиция',pack:8,sessions:8,limits:'Без ограничений',notes:''},
+{name:'Дмитрий',age:35,height:186,weight:86,goal:'Набор массы',pack:20,sessions:17,limits:'Старые ограничения по плечу',notes:'Не работать через боль.'},
+{name:'Иван',age:40,height:179,weight:91,goal:'Похудение',pack:12,sessions:6,limits:'',notes:''},
+{name:'Анна',age:27,height:165,weight:59,goal:'Рекомпозиция',pack:12,sessions:10,limits:'',notes:''}];
+const seedPrograms=[
+{name:'Спина + плечи',client:'Дмитрий',ex:[['Тяга верхнего блока',3,10],['Тяга горизонтального блока',3,10],['Жим гантелей сидя',3,12],['Разведения в стороны',3,12]]},
+{name:'Ноги',client:'Мария',ex:[['Присед в тренажёре',3,10],['Румынская тяга',3,10],['Жим ногами',3,12]]}];
+const seedSchedules=[{client:'Алексей',date:'2026-09-12',time:'10:00',type:'Грудь + руки'},{client:'Мария',date:'2026-09-12',time:'13:00',type:'Ноги'},{client:'Дмитрий',date:'2026-09-12',time:'18:00',type:'Спина + плечи'}];
+let clients=get('clients',seedClients),programs=get('programs',seedPrograms),schedules=get('schedules',seedSchedules),nutrition=get('nutrition',[]),measurements=get('measurements',[]),workoutLogs=get('workoutLogs',[]);
+let editIndex=null, profileIndex=null;
+let calendarDate=new Date(2026,8,12), calendarView="month";
+const $=id=>document.getElementById(id);
+function get(k,d){try{const x=localStorage.getItem('td3_'+k);return x===null?structuredClone(d):JSON.parse(x)}catch(e){return structuredClone(d)}}
+function put(k,v){localStorage.setItem('td3_'+k,JSON.stringify(v))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function initials(n){return n.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase()}
+function toast(t){const x=document.getElementById('toast');x.textContent=t;x.style.display='block';clearTimeout(window._tt);window._tt=setTimeout(()=>x.style.display='none',1600)}
+function open(id){document.getElementById(id).classList.add('show')}
+function close(id){document.getElementById(id).classList.remove('show')}
+function fillSelect(id,value){document.getElementById(id).innerHTML=clients.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');if(value)document.getElementById(id).value=value}
+function go(page){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));({dashboard:renderDashboard,clients:renderClients,workouts:renderPrograms,schedule:renderWeek,nutrition:renderNutrition,progress:renderProgress}[page]||renderDashboard)()}
+function renderDashboard(){mClients.textContent=clients.length;mSessions.textContent=clients.reduce((a,c)=>a+(+c.sessions||0),0);mFood.textContent=nutrition.length;const day='2026-09-12';const ev=schedules.filter(x=>x.date===day).sort((a,b)=>a.time.localeCompare(b.time));mToday.textContent=ev.length;todayList.innerHTML=ev.length?ev.map(x=>`<div class="row"><div class="person"><div class="avatar">${initials(x.client)}</div><div><b>${esc(x.client)}</b><div class="muted">${esc(x.time)} · ${esc(x.type)}</div></div></div><span class="pill">Запланирована</span></div>`).join(''):'<div class="empty">На сегодня тренировок нет.</div>'}
+function renderClients(arr=clients){clientCount.textContent=clients.length+' клиентов';clientList.innerHTML=arr.length?arr.map(c=>{const i=clients.indexOf(c);return `<div class="card client" data-profile="${i}"><div class="person"><div class="avatar">${initials(c.name)}</div><div><b>${esc(c.name)}</b><div class="muted">${esc(c.goal)}</div></div></div><div class="hr"></div><div style="display:flex;justify-content:space-between"><span class="muted">Вес</span><b>${c.weight||'—'} кг</b></div><div style="display:flex;justify-content:space-between;margin-top:8px"><span class="muted">Осталось</span><b>${c.sessions}</b></div></div>`}).join(''):'<div class="card empty">Клиентов нет.</div>'}
+function newClient(){editIndex=null;clientModalTitle.textContent='Новый клиент';clientForm.reset();fPack.value=12;open('clientModal')}
+function editClient(i){const c=clients[i];editIndex=i;clientModalTitle.textContent='Редактировать клиента';fName.value=c.name;fAge.value=c.age||'';fHeight.value=c.height||'';fWeight.value=c.weight||'';fGoal.value=c.goal;fPack.value=c.pack||12;fLimits.value=c.limits||'';fNotes.value=c.notes||'';open('clientModal')}
+function saveClient(e){e.preventDefault();const c={name:fName.value.trim(),age:+fAge.value||'',height:+fHeight.value||'',weight:+fWeight.value||'',goal:fGoal.value,pack:+fPack.value||0,sessions:editIndex===null?(+fPack.value||0):clients[editIndex].sessions,limits:fLimits.value,notes:fNotes.value};if(editIndex===null)clients.push(c);else clients[editIndex]=c;put('clients',clients);close('clientModal');renderClients();renderDashboard();toast('Клиент сохранён')}
+function deleteClient(i){if(confirm('Удалить клиента?')){clients.splice(i,1);put('clients',clients);renderClients();renderDashboard();toast('Клиент удалён')}}
+function openProfile(i){profileIndex=i;const c=clients[i];profileHeader.innerHTML=`<div class="profile"><div class="avatar">${initials(c.name)}</div><div><h2 style="margin:0">${esc(c.name)}</h2><div class="muted">${esc(c.goal)} · ${c.age||'—'} лет</div></div></div>`;overview.innerHTML=`<div class="grid3"><div class="card"><div class="muted">Вес</div><div class="metric">${c.weight||'—'} кг</div></div><div class="card"><div class="muted">Рост</div><div class="metric">${c.height||'—'} см</div></div><div class="card"><div class="muted">Осталось</div><div class="metric">${c.sessions}</div></div></div><div class="card" style="margin-top:14px"><b>Ограничения</b><p class="muted">${esc(c.limits)||'Не указаны'}</p><b>Заметки</b><p class="muted">${esc(c.notes)||'Нет заметок'}</p><div class="actions"><button class="btn" data-edit="${i}">Редактировать</button><button class="btn danger" data-delete="${i}">Удалить</button></div></div>${renderWorkoutHistory(c.name)}`;program.innerHTML=programs.filter(p=>p.client===c.name).map(p=>`<div class="card" style="margin-bottom:12px"><h3>${esc(p.name)}</h3>${p.ex.map(x=>`<div class="exercise"><b>${esc(x[0])}</b><span>${x[1]} подхода</span><span>${x[2]} повт.</span><span>→</span></div>`).join('')}</div>`).join('')||'<div class="empty">Программа не создана.</div>';food.innerHTML=`<div class="card"><h3>Питание</h3>${nutrition.filter(x=>x.client===c.name).map(x=>`<div class="row"><span>${x.date}</span><b>${x.kcal} ккал</b><span>${x.p}Б / ${x.f}Ж / ${x.c}У</span></div>`).join('')||'<div class="empty">Планов нет.</div>'}</div>`;const ms=measurements.filter(x=>x.client===c.name);measure.innerHTML=`<div class="card"><h3>Измерения</h3>${ms.map(x=>`<div class="row"><span>${x.date}</span><b>${x.weight||'—'} кг</b><span>Талия ${x.waist||'—'} см</span></div>`).join('')||'<div class="empty">Измерений нет.</div>'}</div>`;document.querySelectorAll('#profileModal .tab').forEach(x=>x.classList.remove('on'));overview.classList.add('on');document.querySelectorAll('#profileModal .tabs button').forEach(x=>x.classList.remove('on'));document.querySelector('#profileModal .tabs button').classList.add('on');open('profileModal')}
+function newWorkout(pref){wName.value='';fillSelect('wClient',pref);exerciseEditor.innerHTML='';addExercise();open('workoutModal')}
+function addExercise(){const d=document.createElement('div');d.className='exercise';d.innerHTML='<input class="exName" placeholder="Упражнение" required><input class="exSets" type="number" min="1" value="3"><input class="exReps" type="number" min="1" value="10"><button type="button" class="btn danger small exRemove">×</button>';exerciseEditor.appendChild(d)}
+function saveWorkout(e){e.preventDefault();const ex=[...document.querySelectorAll('#exerciseEditor .exercise')].map(r=>[r.querySelector('.exName').value,+r.querySelector('.exSets').value,+r.querySelector('.exReps').value]);programs.push({name:wName.value.trim(),client:wClient.value,ex});put('programs',programs);close('workoutModal');renderPrograms();toast('Программа сохранена')}
+function renderPrograms(){programList.innerHTML=programs.length?programs.map((p,i)=>`<div class="row"><div><b>${esc(p.name)}</b><div class="muted">${esc(p.client)} · ${p.ex.length} упражнений</div></div><button class="btn danger small" data-program-delete="${i}">Удалить</button></div>`).join(''):'<div class="empty">Программ нет.</div>'}
+function pad(n){return String(n).padStart(2,'0')}
+function iso(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function monday(d){const x=new Date(d);const day=x.getDay()||7;x.setDate(x.getDate()-day+1);x.setHours(0,0,0,0);return x}
+function fmtMonth(d){return d.toLocaleDateString('ru-RU',{month:'long',year:'numeric'}).replace(/^./,c=>c.toUpperCase())}
+function renderWeek(){
+ const cal=$('calendar'), grid=$('week'), title=$('calendarTitle');
+ let start,end;
+ if(calendarView==='month'){start=monday(new Date(calendarDate.getFullYear(),calendarDate.getMonth(),1));end=new Date(start);end.setDate(start.getDate()+41)}
+ else {start=monday(calendarDate);end=new Date(start);end.setDate(start.getDate()+(calendarView==='2week'?13:6))}
+ const days=[]; for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)) days.push(new Date(d));
+ const baseMonth=calendarDate.getMonth();
+ title.textContent=calendarView==='month'?fmtMonth(calendarDate):`${days[0].toLocaleDateString('ru-RU',{day:'numeric',month:'short'})} — ${days[days.length-1].toLocaleDateString('ru-RU',{day:'numeric',month:'short',year:'numeric'})}`;
+ cal.className='calendar '+(calendarView==='month'?'month-view':calendarView==='2week'?'twoweek-view':'week-view');
+ grid.innerHTML=days.map(d=>{
+   const day=iso(d), events=schedules.map((x,idx)=>({...x,_idx:idx})).filter(x=>x.date===day).sort((a,b)=>a.time.localeCompare(b.time));
+   const isToday=day===iso(new Date()), muted=calendarView==='month'&&d.getMonth()!==baseMonth;
+   return `<div class="day ${muted?'muted-day':''} ${isToday?'today':''}" data-day="${day}">
+     <div class="day-head"><span class="day-num">${d.getDate()}</span><button class="day-add" data-day-add="${day}">+</button></div>
+     ${events.map(x=>{
+       const done=x.status==='done';
+       return `<div class="event ${done?'done':''}" data-event-index="${x._idx}">
+         <b>${esc(x.time)}</b> · ${esc(x.client)}
+         <div class="event-program">${esc(x.type)}${x.program?' · '+esc(x.program):''}</div>
+         <span class="start-label">${done?'✓ Завершено':'Открыть тренировку'}</span>
+       </div>`;
+     }).join('')}
+   </div>`;
+ }).join('');
+}
+
+function newSchedule(pref,date){fillSelect('sClient',pref); const pc=$('sProgram'); pc.innerHTML='<option value="">Без программы</option>'+programs.map((p,i)=>`<option value="${i}">${esc(p.name)} · ${esc(p.client)}</option>`).join(''); $('sDate').value=date||iso(calendarDate); $('sTime').value='10:00'; $('sType').value='Персональная тренировка'; pc.value=''; open('scheduleModal')}
+function saveSchedule(e){e.preventDefault();const pi=$('sProgram').value;const program=pi!==''?programs[+pi]:null; schedules.push({client:$('sClient').value,date:$('sDate').value,time:$('sTime').value,type:$('sType').value,program:program?program.name:'',programIndex:pi!==''?+pi:null,status:'planned'});put('schedules',schedules);close('scheduleModal');calendarDate=new Date($('sDate').value+'T12:00:00');renderWeek();renderDashboard();toast(program?'Тренировка добавлена из программы':'Тренировка добавлена')}
+
+function getProgramForSchedule(sc){
+  if(sc.programIndex!==null && sc.programIndex!==undefined && programs[sc.programIndex]) return programs[sc.programIndex];
+  return programs.find(p=>p.name===sc.program && p.client===sc.client) || programs.find(p=>p.name===sc.program) || null;
+}
+function openSession(scheduleIndex){
+  const sc=schedules[scheduleIndex]; if(!sc) return;
+  const p=getProgramForSchedule(sc);
+  $('sessionTitle').textContent=(p?p.name:sc.type||'Тренировка');
+  $('sessionMeta').textContent=`${sc.client} · ${sc.date} · ${sc.time}`;
+  const previous=workoutLogs.filter(x=>x.client===sc.client && x.program===(p?p.name:'') ).slice(-1)[0];
+  const rows=p&&p.ex.length?p.ex:[['Свободная тренировка',3,10]];
+  $('sessionExercises').innerHTML=`<div class="session-row session-head"><span>Упражнение</span><span>Вес, кг</span><span>Повторы</span><span>RIR</span></div>`+
+    rows.map((x,i)=>{
+      const prev=previous&&previous.exercises&&previous.exercises[i] ? previous.exercises[i] : {};
+      return `<div class="session-row">
+        <b>${esc(x[0])}</b>
+        <input class="logWeight" type="number" step=".5" value="${prev.weight??''}" placeholder="—">
+        <input class="logReps" type="number" min="0" value="${prev.reps??x[2]}" placeholder="${x[2]}">
+        <input class="logRir" type="number" min="0" max="10" value="${prev.rir??''}" placeholder="—">
+      </div>`;
+    }).join('');
+  $('sessionNote').value='';
+  $('sessionForm').dataset.scheduleIndex=scheduleIndex;
+  open('sessionModal');
+}
+function saveSession(e){
+ e.preventDefault();
+ const si=+$('sessionForm').dataset.scheduleIndex, sc=schedules[si]; if(!sc) return;
+ const p=getProgramForSchedule(sc);
+ const exercises=[...document.querySelectorAll('#sessionExercises .session-row:not(.session-head)')].map(r=>({
+   name:r.querySelector('.logWeight')?r.previousElementSibling?.textContent:'',
+   weight:+r.querySelector('.logWeight').value||'',
+   reps:+r.querySelector('.logReps').value||0,
+   rir:r.querySelector('.logRir').value===''?'':+r.querySelector('.logRir').value
+ }));
+ // Recover exercise names from the program because the grid uses a compact DOM layout.
+ const names=p&&p.ex?p.ex.map(x=>x[0]):['Свободная тренировка'];
+ exercises.forEach((x,i)=>x.name=names[i]||x.name);
+ workoutLogs.push({scheduleIndex:si,client:sc.client,date:sc.date,time:sc.time,program:p?p.name:'',exercises,note:$('sessionNote').value,createdAt:new Date().toISOString()});
+ sc.status='done'; schedules[si]=sc;
+ put('workoutLogs',workoutLogs); put('schedules',schedules);
+ close('sessionModal'); renderWeek(); renderDashboard(); toast('Тренировка завершена и сохранена');
+}
+function renderWorkoutHistory(clientName){
+ const logs=workoutLogs.filter(x=>x.client===clientName).slice().reverse();
+ return logs.length?`<div class="card" style="margin-top:12px"><h3>История тренировок</h3>${logs.slice(0,10).map(l=>`<div class="row"><div><b>${esc(l.program||'Тренировка')}</b><div class="muted">${l.date} · ${l.time}</div></div><span>${l.exercises.filter(x=>x.weight!==''||x.reps).length} упражнений</span></div>`).join('')}</div>`:'';
+}
+
+function newNutrition(pref){fillSelect('nClient',pref);nutritionForm.reset();nKcal.value=2400;nP.value=160;nF.value=75;nC.value=280;open('nutritionModal')}
+function saveNutrition(e){e.preventDefault();nutrition.push({client:nClient.value,kcal:+nKcal.value,p:+nP.value,f:+nF.value,c:+nC.value,note:nNote.value,date:'2026-09-12'});put('nutrition',nutrition);close('nutritionModal');renderNutrition();renderDashboard();toast('План питания сохранён')}
+function renderNutrition(){foodCount.textContent=nutrition.length;nutritionList.innerHTML=nutrition.length?nutrition.slice().reverse().map(x=>`<div class="row"><div><b>${esc(x.client)}</b><div class="muted">${x.date} · ${esc(x.note)||'План питания'}</div></div><b>${x.kcal} ккал</b><span class="muted">${x.p}Б / ${x.f}Ж / ${x.c}У</span></div>`).join(''):'<div class="empty">Планов пока нет.</div>'}
+function newMeasurement(pref){fillSelect('mClient',pref);mDate.value='2026-09-12';mWeight.value='';mWaist.value='';mChest.value='';mThigh.value='';open('measurementModal')}
+function saveMeasurement(e){e.preventDefault();measurements.push({client:mClient.value,date:mDate.value,weight:+mWeight.value||'',waist:+mWaist.value||'',chest:+mChest.value||'',thigh:+mThigh.value||''});put('measurements',measurements);close('measurementModal');renderProgress();toast('Измерение добавлено')}
+function renderProgress(){measurementCount.textContent=measurements.length;const vals=measurements.map(x=>+x.weight).filter(Boolean);lastWeight.textContent=vals.length?vals[vals.length-1]+' кг':'—';const v=vals.length?vals.slice(-8):[78,79,78,80,81],mx=Math.max(...v),mn=Math.min(...v);chart.innerHTML=v.map(x=>`<span style="height:${Math.max(15,((x-mn)/(mx-mn||1))*140)}px"><small>${x}</small></span>`).join('');measurementList.innerHTML=measurements.length?measurements.slice().reverse().map(x=>`<div class="row"><div><b>${esc(x.client)}</b><div class="muted">${x.date}</div></div><span>${x.weight||'—'} кг</span></div>`).join(''):'<div class="empty">Измерений пока нет.</div>'}
+
+document.addEventListener('click',e=>{
+ const nav=e.target.closest('.nav button');if(nav){go(nav.dataset.page);return}
+ const calNav=e.target.closest('[data-cal]');if(calNav){const a=calNav.dataset.cal;if(a==='today')calendarDate=new Date();if(a==='prev'){const n=calendarView==='month'?1:calendarView==='2week'?14:7;calendarDate.setDate(calendarDate.getDate()-n)}if(a==='next'){const n=calendarView==='month'?1:calendarView==='2week'?14:7;calendarDate.setDate(calendarDate.getDate()+n)}renderWeek();return}
+ const viewBtn=e.target.closest('[data-view]');if(viewBtn){calendarView=viewBtn.dataset.view;document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x===viewBtn));renderWeek();return}
+ const dayAdd=e.target.closest('[data-day-add]');if(dayAdd){newSchedule(null,dayAdd.dataset.day);return}
+ const eventEl=e.target.closest('[data-event-index]');if(eventEl){openSession(+eventEl.dataset.eventIndex);return}
+const dayCell=e.target.closest('.day[data-day]');if(dayCell && !e.target.closest('.event')){newSchedule(null,dayCell.dataset.day);return}
+const act=e.target.closest('[data-action]');if(act){const a=act.dataset.action;if(a==='new-client')newClient();if(a==='new-workout')newWorkout();if(a==='new-schedule')newSchedule();if(a==='new-nutrition')newNutrition();if(a==='new-measurement')newMeasurement();return}
+ const c=e.target.closest('[data-close]');if(c){close(c.dataset.close);return}
+ const prof=e.target.closest('[data-profile]');if(prof){openProfile(+prof.dataset.profile);return}
+ const ed=e.target.closest('[data-edit]');if(ed){editClient(+ed.dataset.edit);close('profileModal');return}
+ const del=e.target.closest('[data-delete]');if(del){deleteClient(+del.dataset.delete);close('profileModal');return}
+ const pd=e.target.closest('[data-program-delete]');if(pd){programs.splice(+pd.dataset.programDelete,1);put('programs',programs);renderPrograms();toast('Программа удалена');return}
+ const tabBtn=e.target.closest('[data-tab]');if(tabBtn){document.querySelectorAll('#profileModal .tabs button').forEach(x=>x.classList.remove('on'));tabBtn.classList.add('on');document.querySelectorAll('#profileModal .tab').forEach(x=>x.classList.remove('on'));document.getElementById(tabBtn.dataset.tab).classList.add('on')}
+ const xr=e.target.closest('.exRemove');if(xr){xr.parentElement.remove()}
+});
+clientSearch.addEventListener('input',e=>renderClients(clients.filter(c=>c.name.toLowerCase().includes(e.target.value.toLowerCase()))));
+clientForm.addEventListener('submit',saveClient);workoutForm.addEventListener('submit',saveWorkout);scheduleForm.addEventListener('submit',saveSchedule);sessionForm.addEventListener('submit',saveSession);nutritionForm.addEventListener('submit',saveNutrition);measurementForm.addEventListener('submit',saveMeasurement);addExercise.onclick=addExercise;
+
+// Built-in smoke test suite: verifies the main DOM controls and core functions exist.
+function smokeTests(){const tests=[
+['navigation buttons',document.querySelectorAll('.nav button').length===6],
+['client form',!!document.getElementById('clientForm')],
+['workout form',!!document.getElementById('workoutForm')],
+['schedule form',!!document.getElementById('scheduleForm')],
+['nutrition form',!!document.getElementById('nutritionForm')],
+['measurement form',!!document.getElementById('measurementForm')],
+['localStorage available',typeof localStorage!=='undefined'],
+['dashboard render',!!document.getElementById('todayList')],['calendar render',!!document.getElementById('calendar')],['calendar views',document.querySelectorAll('[data-view]').length===3],['schedule program selector',!!document.getElementById('sProgram')],['session modal',!!document.getElementById('sessionModal')],['session form',!!document.getElementById('sessionForm')]];
+console.log('TrainerDesk smoke tests:',tests.map(t=>(t[1]?'PASS ':'FAIL ')+t[0]).join(' | '));return tests.every(t=>t[1])}
+renderDashboard();renderClients();renderPrograms();renderWeek();renderNutrition();renderProgress();smokeTests();
+</script>
+</body></html>
